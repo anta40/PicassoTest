@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
+import com.squareup.picasso3.Picasso;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,10 +16,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        String IMG_URL = "https://i.pinimg.com/originals/f2/d1/00/f2d100f03cd09b8299e2e4fe248dc685.png";
+
         imgView = (ImageView) findViewById(R.id.img_view);
 
-        Picasso.get()
-                .load("https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg")
+        /*
+        Works OK on Picasso 2.7
+        Doesn't work on Picasso 3.x
+
+        Picasso.with()
+                .load("IMG_URL")
                 .into(imgView);
+
+         */
+
+        Picasso pic = new Picasso.Builder(getApplicationContext()).build();
+        pic.load(IMG_URL).into(imgView);
     }
 }
